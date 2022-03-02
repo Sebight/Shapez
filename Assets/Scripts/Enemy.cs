@@ -6,7 +6,6 @@ using UnityEngine;
 public enum EnemyType
 {
     Normal,
-    Stealth, 
     Boss
 }
 
@@ -16,6 +15,10 @@ public class Enemy
     public int damage;
     public int speed;
     public EnemyType type;
+    public bool isStealth;
+    
+    public bool revealed;
+    
     public virtual void Die()
     {
     }
