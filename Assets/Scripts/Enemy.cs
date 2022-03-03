@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
+        gameManager.RemoveEnemy(this);
     }
 
     public virtual void Initialize(GameManager gameManager)
@@ -58,6 +59,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void FinishPath()
     {
+        gameManager.DamagePlayer(damage);
         gameManager.RemoveEnemy(this);
     }
 }
