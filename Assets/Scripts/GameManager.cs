@@ -66,4 +66,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
     }
+
+    public void RegisterTower(Tower tower)
+    {
+        towersPlaced.Add(tower);
+        tower.enabled = true;
+        tower.Initialize(this);
+    }
 }
