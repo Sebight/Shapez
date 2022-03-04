@@ -21,6 +21,43 @@ public class Tower : MonoBehaviour
     {
     }
 
+    public virtual void OnSelect()
+    {
+        Debug.Log(gameObject.name + " has been selected.");
+
+        //Draw circle around tower
+        //Draw range of tower
+
+        int density = 32;
+        float radius = range;
+
+        float theta = (2f * Mathf.PI) / density;
+        float angle = 0;
+        for (int i = 0; i < density; i++)
+        {
+            float x = gameObject.transform.position.x + radius * Mathf.Cos(angle);
+            float z = gameObject.transform.position.z + radius * Mathf.Sin(angle);
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.SetParent(gameObject.transform.GetChild(0));
+            cube.transform.position = new Vector3(x, 1, z);
+            angle += theta;
+        }
+
+    }
+
+    public virtual void OnDeselect()
+    {
+        Debug.Log(gameObject.name + " has been deselected.");
+
+        //Remove circle around tower
+        //! This can stop working if the tower's hierarchy is moved!!!
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            Destroy(transform.GetChild(0).GetChild(i).gameObject);
+        }
+
+    }
+
     public virtual void Initialize(GameManager gameManager)
     {
         this.gameManager = gameManager;

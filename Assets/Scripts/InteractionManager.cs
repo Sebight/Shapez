@@ -14,6 +14,7 @@ public class InteractionManager : MonoBehaviour
     private bool placingTower;
     private int placingTowerIndex;
     
+    private Tower selectedTower;
     public List<GameObject> towersPrefabs;
     
     
@@ -48,10 +49,40 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
+    public void SelectTower(Ray ray)
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !placingTower)
+        {
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Tower tower = hit.transform.GetComponent<Tower>();
+                if (tower != null)
+                {
+                    if (selectedTower != null)
+                    {
+                        selectedTower.OnDeselect();
+                        selectedTower = null;
+                    }                    
+                    tower.OnSelect();
+                    selectedTower = tower;
+                } else {
+                    if (selectedTower != null)
+                    {
+                        selectedTower.OnDeselect();
+                        selectedTower = null;
+                    }
+                }
+            }
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         var ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        SelectTower(ray);
 
         if (placingTower)
         {

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0.1f, 0.5f);
+        InvokeRepeating(nameof(SpawnEnemy), 10f, 0.5f);
         foreach (var tower in towersPlaced)
         {
             tower.Initialize(this);
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        // Debug.Log("Game Over");
     }
 
     public void RegisterTower(Tower tower)
