@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8688831081342140217}
   - component: {fileID: -9083025817657412345}
   m_Layer: 0
-  m_Name: RectangleTower
+  m_Name: Rectangle Idler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8547190428277314285}
   - component: {fileID: 9208788239264647156}
   m_Layer: 0
-  m_Name: SphereTower
+  m_Name: Sphere Maniac
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8547190428277314282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.406, y: 1.21, z: -3.74}
+  m_LocalPosition: {x: -0.15094459, y: 1.4, z: -11.298815}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

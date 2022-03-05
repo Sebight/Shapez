@@ -11,8 +11,8 @@ public class InteractionManager : MonoBehaviour
 
     public GameManager gameManager;
 
-    private bool placingTower;
-    private int placingTowerIndex;
+    public bool placingTower;
+    public int placingTowerIndex;
 
     private Tower selectedTower;
     public List<GameObject> towersPrefabs;

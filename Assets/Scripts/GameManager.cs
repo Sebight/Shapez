@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public WaveManager waveManager;
 
+    public InteractionManager interactionManager;
+
     //Getters
     public Transform GetPathWaypoints() => pathWaypoints;
 
