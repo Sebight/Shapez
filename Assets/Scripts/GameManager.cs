@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // Debug.Log("Game Over");
+        Debug.Log("Game Over");
     }
 
     public void RegisterTower(Tower tower)
