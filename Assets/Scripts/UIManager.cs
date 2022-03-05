@@ -10,10 +10,16 @@ public class UIManager : MonoBehaviour
     
 
     public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI waveText;
 
     public void UpdateMoneyText(int amount)
     {
         moneyText.text = amount.ToString() + " $";
+    }
+
+    public void UpdateWaveText()
+    {
+        waveText.text = "Wave " + gameManager.GetWave();        
     }
 
     public void Initialize(GameManager gameManager, int money)

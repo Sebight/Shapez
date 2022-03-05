@@ -26,12 +26,19 @@ public class InteractionManager : MonoBehaviour
 
     public void PlaceTower(Ray ray, int towerIndex)
     {
+        if (selectedTower != null)
+        {
+            Debug.Log("Clear");
+            selectedTower.OnDeselect();
+            selectedTower = null;
+        }
         bool isMouseOverUnplacable = false;
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.transform.CompareTag("Ground"))
             {
                 towerPrefab = towersPrefabs[towerIndex];
+                towerPrefab.SetActive(true);
                 towerPrefab.transform.position = Vector3.Lerp(towerPrefab.transform.position, new Vector3(hit.point.x, 1.4f, hit.point.z), 0.8f);
             }
 
@@ -104,6 +111,17 @@ public class InteractionManager : MonoBehaviour
         {
             placingTower = true;
             placingTowerIndex = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && placingTower)
+        {
+            placingTower = false;
+            towersPrefabs[placingTowerIndex].SetActive(false);
+            if (selectedTower != null)
+            {
+                selectedTower.OnDeselect();
+                selectedTower = null;
+            }
         }
     }
 }

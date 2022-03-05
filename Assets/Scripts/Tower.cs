@@ -23,7 +23,6 @@ public class Tower : MonoBehaviour
 
     public virtual void OnSelect()
     {
-        Debug.Log(gameObject.name + " has been selected.");
 
         //Draw circle around tower
         //Draw range of tower
@@ -47,7 +46,6 @@ public class Tower : MonoBehaviour
 
     public virtual void OnDeselect()
     {
-        Debug.Log(gameObject.name + " has been deselected.");
 
         //Remove circle around tower
         //! This can stop working if the tower's hierarchy is moved!!!

@@ -20,12 +20,16 @@ public class Enemy : MonoBehaviour
     public int health;
     public int damage;
     public int speed;
+
+    public int reward;
     public EnemyType type;
+
 
     private int currentWaypoint = 0;
 
     public virtual void Die()
     {
+        gameManager.UpdateMoney(reward);
         gameManager.RemoveEnemy(this);
     }
 
