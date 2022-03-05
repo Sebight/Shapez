@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour
     public float range = 10f;
     public float fireRate = 1f;
     public float damage = 1f;
-    public float cost = 10f;
+    public int cost = 10;
 
     private float nextAttackTime;
 

@@ -13,11 +13,11 @@ public class InteractionManager : MonoBehaviour
 
     private bool placingTower;
     private int placingTowerIndex;
-    
+
     private Tower selectedTower;
     public List<GameObject> towersPrefabs;
-    
-    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +43,12 @@ public class InteractionManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isMouseOverUnplacable)
         {
-            GameObject go = Instantiate(towerPrefab, towerPrefab.transform.position, towerPrefab.transform.rotation);
-            gameManager.RegisterTower(go.GetComponent<Tower>());
-            placingTower = false;
+            if (towerPrefab.GetComponent<Tower>().cost <= gameManager.GetMoney())
+            {
+                GameObject go = Instantiate(towerPrefab, towerPrefab.transform.position, towerPrefab.transform.rotation);
+                gameManager.RegisterTower(go.GetComponent<Tower>());
+                placingTower = false;
+            }
         }
     }
 
@@ -62,10 +65,12 @@ public class InteractionManager : MonoBehaviour
                     {
                         selectedTower.OnDeselect();
                         selectedTower = null;
-                    }                    
+                    }
                     tower.OnSelect();
                     selectedTower = tower;
-                } else {
+                }
+                else
+                {
                     if (selectedTower != null)
                     {
                         selectedTower.OnDeselect();
@@ -94,7 +99,7 @@ public class InteractionManager : MonoBehaviour
             placingTower = true;
             placingTowerIndex = 0;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.E) && !placingTower)
         {
             placingTower = true;

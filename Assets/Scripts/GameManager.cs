@@ -8,18 +8,36 @@ public class GameManager : MonoBehaviour
     public List<Tower> towersPlaced = new List<Tower>();
     public List<GameObject> enemiesPrefabs = new List<GameObject>();
     public List<Enemy> enemies = new List<Enemy>();
+    public int money;
+
+
 
     public Transform pathWaypoints;
 
     //Health left for the player
     public int health = 100;
 
+    //Managers
+    public UIManager uiManager;
+
+
+    //Getters
     public Transform GetPathWaypoints() => pathWaypoints;
+
+    public int GetMoney() => money;
+
+    //
 
     public void RemoveEnemy(Enemy e)
     {
         enemies.Remove(e);
         Destroy(e.gameObject);
+    }
+
+    public void UpdateMoney(int amount)
+    {
+        money += amount;
+        uiManager.UpdateMoneyText(money);
     }
 
     public void SpawnEnemy()
@@ -32,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        uiManager.Initialize(this, money);
         InvokeRepeating(nameof(SpawnEnemy), 10f, 0.5f);
         foreach (var tower in towersPlaced)
         {
@@ -69,6 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void RegisterTower(Tower tower)
     {
+        UpdateMoney(-tower.cost);
+        uiManager.UpdateMoneyText(money);
         towersPlaced.Add(tower);
         tower.enabled = true;
         tower.Initialize(this);
