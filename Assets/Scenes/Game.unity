@@ -1358,8 +1358,6 @@ MonoBehaviour:
   - definition:
     - enemyType: {fileID: 2352173920424674003, guid: a29029849773aba48b4686a301cca46a, type: 3}
       count: 5
-    - enemyType: {fileID: -2456273124696605129, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
-      count: 1
   - definition:
     - enemyType: {fileID: 2352173920424674003, guid: a29029849773aba48b4686a301cca46a, type: 3}
       count: 10
@@ -1369,6 +1367,24 @@ MonoBehaviour:
   - definition:
     - enemyType: {fileID: 2352173920424674003, guid: a29029849773aba48b4686a301cca46a, type: 3}
       count: 40
+  - definition:
+    - enemyType: {fileID: 2352173920424674003, guid: a29029849773aba48b4686a301cca46a, type: 3}
+      count: 60
+  - definition:
+    - enemyType: {fileID: -2456273124696605129, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
+      count: 5
+  - definition:
+    - enemyType: {fileID: -2456273124696605129, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
+      count: 15
+  - definition:
+    - enemyType: {fileID: -2456273124696605129, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
+      count: 25
+  - definition:
+    - enemyType: {fileID: -2456273124696605129, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
+      count: 50
+  - definition:
+    - enemyType: {fileID: -2456273124696605129, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
+      count: 100
   gameManager: {fileID: 490657780}
 --- !u!1 &487042061
 GameObject:
@@ -2247,6 +2263,8 @@ MonoBehaviour:
   cam: {fileID: 635953977}
   towerPrefab: {fileID: 0}
   gameManager: {fileID: 490657780}
+  placingTower: 0
+  placingTowerIndex: 0
   towersPrefabs:
   - {fileID: 299741827}
   - {fileID: 5799692}

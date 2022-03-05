@@ -101,17 +101,17 @@ public class InteractionManager : MonoBehaviour
             PlaceTower(ray, placingTowerIndex);
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && !placingTower)
-        {
-            placingTower = true;
-            placingTowerIndex = 0;
-        }
+        // if (Input.GetKeyDown(KeyCode.D) && !placingTower)
+        // {
+        //     placingTower = true;
+        //     placingTowerIndex = 0;
+        // }
 
-        if (Input.GetKeyDown(KeyCode.E) && !placingTower)
-        {
-            placingTower = true;
-            placingTowerIndex = 1;
-        }
+        // if (Input.GetKeyDown(KeyCode.E) && !placingTower)
+        // {
+        //     placingTower = true;
+        //     placingTowerIndex = 1;
+        // }
 
         if (Input.GetKeyDown(KeyCode.Q) && placingTower)
         {

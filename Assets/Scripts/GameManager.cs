@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator SpawnWave(WaveDefinition wave)
     {
+        yield return new WaitForSeconds(4);
         List<WaveDefinitionElement> waveDefinition = wave.definition;
         for (int i = 0; i < waveDefinition.Count; i++)
         {
