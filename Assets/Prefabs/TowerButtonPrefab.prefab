@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4282634185
+  m_fontColor: {r: 0.78706825, g: 0.8113208, b: 0.26406196, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c8cc65b7a6f4df991df84da97d30ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerIndex: 0
 --- !u!1 &7955603924512575389
 GameObject:
   m_ObjectHideFlags: 0

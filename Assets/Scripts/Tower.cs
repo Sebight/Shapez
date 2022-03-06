@@ -106,8 +106,22 @@ public class Tower : MonoBehaviour
             Enemy nearestEnemy = GetNearestEnemy();
             if (nearestEnemy != null && Vector3.Distance(transform.position, nearestEnemy.transform.position) <= range)
             {
+                //Shoot a line from the tower to the enemy
+
+                LineRenderer line = gameObject.GetComponent<LineRenderer>();
+                line.SetPosition(0, transform.position);
+                line.SetPosition(1, nearestEnemy.transform.position);
+                line.enabled = true;
+                StartCoroutine(DisableLine(line));
+
                 nearestEnemy.TakeDamage(1);
             }
         }
+    }
+
+    private IEnumerator DisableLine(LineRenderer line)
+    {
+        yield return new WaitForSeconds(0.05f);
+        line.enabled = false;
     }
 }
