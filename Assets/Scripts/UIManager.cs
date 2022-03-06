@@ -48,8 +48,7 @@ public class UIManager : MonoBehaviour
 
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                gameManager.interactionManager.placingTowerIndex = towerButComponnet.towerIndex;
-                gameManager.interactionManager.placingTower = true;
+                gameManager.interactionManager.EquipTower(towerButComponnet.towerIndex);
             });
             n++;
         }

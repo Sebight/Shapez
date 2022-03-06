@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class InteractionManager : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
     [SerializeField] private GameObject towerPrefab;
+
+    [SerializeField] ParticleSystem particleSystem;
 
     public GameManager gameManager;
 
@@ -24,11 +27,22 @@ public class InteractionManager : MonoBehaviour
     {
     }
 
+    public void EquipTower(int index)
+    {
+        if (selectedTower != null)
+        {
+            selectedTower.OnDeselect(true);
+            selectedTower = null;
+        }
+        towersPrefabs[placingTowerIndex].SetActive(false);
+        placingTower = true;
+        placingTowerIndex = index;
+    }
+
     public void PlaceTower(Ray ray, int towerIndex)
     {
         if (selectedTower != null)
         {
-            Debug.Log("Clear");
             selectedTower.OnDeselect();
             selectedTower = null;
         }
@@ -46,15 +60,23 @@ public class InteractionManager : MonoBehaviour
             {
                 isMouseOverUnplacable = true;
             }
+
+            //Range circle
+            particleSystem.gameObject.SetActive(true);
+            particleSystem.transform.position = towerPrefab.transform.position;
+            ParticleSystem.ShapeModule shape = particleSystem.shape;
+            shape.radius = towerPrefab.GetComponent<Tower>().range;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isMouseOverUnplacable)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isMouseOverUnplacable && !EventSystem.current.IsPointerOverGameObject())
         {
             if (towerPrefab.GetComponent<Tower>().cost <= gameManager.GetMoney())
             {
                 GameObject go = Instantiate(towerPrefab, towerPrefab.transform.position, towerPrefab.transform.rotation);
+                go.GetComponent<Collider>().enabled = true;
                 gameManager.RegisterTower(go.GetComponent<Tower>());
                 placingTower = false;
+                particleSystem.gameObject.SetActive(false);
             }
         }
     }
@@ -70,17 +92,17 @@ public class InteractionManager : MonoBehaviour
                 {
                     if (selectedTower != null)
                     {
-                        selectedTower.OnDeselect();
+                        selectedTower.OnDeselect(true);
                         selectedTower = null;
                     }
-                    tower.OnSelect();
+                    tower.OnSelect(particleSystem);
                     selectedTower = tower;
                 }
                 else
                 {
                     if (selectedTower != null)
                     {
-                        selectedTower.OnDeselect();
+                        selectedTower.OnDeselect(true);
                         selectedTower = null;
                     }
                 }
@@ -116,6 +138,7 @@ public class InteractionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && placingTower)
         {
             placingTower = false;
+            particleSystem.gameObject.SetActive(false);
             towersPrefabs[placingTowerIndex].SetActive(false);
             if (selectedTower != null)
             {

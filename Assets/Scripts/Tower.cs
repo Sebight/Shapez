@@ -13,6 +13,8 @@ public class Tower : MonoBehaviour
 
     private float nextAttackTime;
 
+    private ParticleSystem tempParticle;
+
     public virtual void OnPlaced()
     {
     }
@@ -44,6 +46,19 @@ public class Tower : MonoBehaviour
 
     }
 
+    public virtual void OnSelect(ParticleSystem particle)
+    {
+
+        //Draw circle around tower
+        //Draw range of tower
+        ParticleSystem newParticle = Instantiate(particle);
+        newParticle.transform.position = gameObject.transform.position;
+        ParticleSystem.ShapeModule shape = newParticle.shape;
+        shape.radius = range;
+        newParticle.gameObject.SetActive(true);
+        tempParticle = newParticle;
+    }
+
     public virtual void OnDeselect()
     {
 
@@ -54,6 +69,11 @@ public class Tower : MonoBehaviour
             Destroy(transform.GetChild(0).GetChild(i).gameObject);
         }
 
+    }
+
+    public virtual void OnDeselect(bool particle)
+    {
+        Destroy(tempParticle.gameObject);
     }
 
     public virtual void Initialize(GameManager gameManager)
