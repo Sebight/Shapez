@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2059.4395, g: 2223.252, b: 2609.873, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6197,6 +6197,8 @@ MonoBehaviour:
   - definition:
     - enemyType: {fileID: -2456273124696605129, guid: a6a03b5aeeb3d42c688c02a3379cd57d, type: 3}
       count: 1
+  enemiesPerWave: 2
+  waveChangeRate: 2
   gameManager: {fileID: 490657780}
 --- !u!1 &487042061
 GameObject:
@@ -6285,6 +6287,7 @@ MonoBehaviour:
   enemies: []
   money: 50
   health: 100
+  gamemode: 1
   pathWaypoints: {fileID: 1759774726}
   uiManager: {fileID: 1351191751}
   waveManager: {fileID: 473389882}

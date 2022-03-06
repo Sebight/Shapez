@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Gamemode
+{
+    Normal,
+    Infinite
+}
+
 public class GameManager : MonoBehaviour
 {
     public List<Tower> towersPlaced = new List<Tower>();
@@ -11,6 +17,9 @@ public class GameManager : MonoBehaviour
     public int money;
     //Health left for the player
     public int health = 100;
+
+    public Gamemode gamemode;
+
     public Transform pathWaypoints;
 
     private bool waveRunning = false;
@@ -67,6 +76,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnWave(List<Enemy> enemy)
+    {
+        yield return new WaitForSeconds(4);
+        for (int i = 0; i < enemy.Count; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            SpawnEnemy(enemy[i]);
+        }
+    }
+
     public void Start()
     {
         uiManager.Initialize(this, money);
@@ -90,13 +109,25 @@ public class GameManager : MonoBehaviour
 
         if (!waveRunning)
         {
-            if (enemies.Count == 0)
+            if (gamemode == Gamemode.Normal)
             {
-                waveRunning = true;
-                waveManager.IncrementWave();
-                uiManager.UpdateWaveText();
-                WaveDefinition wave = waveManager.GetCurrentWaveDefinition();
-                StartCoroutine(SpawnWave(wave));
+                if (enemies.Count == 0)
+                {
+                    waveRunning = true;
+                    waveManager.IncrementWave();
+                    uiManager.UpdateWaveText();
+                    WaveDefinition wave = waveManager.GetCurrentWaveDefinition();
+                    StartCoroutine(SpawnWave(wave));
+                }
+            } else if (gamemode == Gamemode.Infinite)
+            {
+                if (enemies.Count == 0)
+                {
+                    waveRunning = true;
+                    waveManager.IncrementWave();
+                    uiManager.UpdateWaveText();
+                    waveManager.InfiniteWave();
+                }
             }
         }
 
