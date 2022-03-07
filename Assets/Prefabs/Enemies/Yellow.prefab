@@ -116,5 +116,5 @@ MonoBehaviour:
   health: 20
   damage: 50
   speed: 6
-  reward: 10
+  reward: 4
   type: 0

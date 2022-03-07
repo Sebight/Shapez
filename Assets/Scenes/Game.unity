@@ -6856,6 +6856,7 @@ MonoBehaviour:
   enemiesPrefabs:
   - {fileID: 2352173920424674004, guid: a29029849773aba48b4686a301cca46a, type: 3}
   - {fileID: 2352173920424674004, guid: 1c8ac39d4c2244c479c635c217ff3bb8, type: 3}
+  - {fileID: 2352173920424674004, guid: a6a03b5aeeb3d42c688c02a3379cd57d, type: 3}
   enemies: []
   money: 50
   health: 100

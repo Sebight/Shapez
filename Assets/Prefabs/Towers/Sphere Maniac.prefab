@@ -146,7 +146,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   range: 8
   fireRate: 0.1
-  damage: 10
+  damage: 8
   cost: 50
 --- !u!120 &-6148501327276794862
 LineRenderer:
