@@ -13,8 +13,15 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI waveText;
+    public GameObject towersOptions;
 
     public GameObject towersParent;
+    
+    
+    public Button playButton;
+    public Button leaderboardButton;
+    public Button quitButton;
+
 
     public void UpdateMoneyText(int amount)
     {
@@ -52,6 +59,20 @@ public class UIManager : MonoBehaviour
             });
             n++;
         }
+    }
+    
+    
+    //Menu Behaviour
+    public void Play()
+    {
+        gameManager.StartGame();
+        playButton.gameObject.SetActive(false);
+        leaderboardButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
+        
+        waveText.gameObject.SetActive(true);
+        towersOptions.SetActive(true);
+        moneyText.gameObject.SetActive(true);
     }
 
     // Start is called before the first frame update

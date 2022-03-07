@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Transform pathWaypoints;
 
     private bool waveRunning = false;
+    private bool gameStarted = false;
 
     //Managers
     public UIManager uiManager;
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
             towersPlaced[i].Attack();
         }
 
-        if (!waveRunning)
+        if (!waveRunning && gameStarted)
         {
             if (gamemode == Gamemode.Normal)
             {
@@ -146,6 +147,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over");
+    }
+
+    public void StartGame()
+    {
+        gameStarted = true;
     }
 
     public void RegisterTower(Tower tower)
