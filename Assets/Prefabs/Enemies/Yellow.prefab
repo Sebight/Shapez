@@ -115,6 +115,6 @@ MonoBehaviour:
   pathWaypoints: {fileID: 0}
   health: 20
   damage: 50
-  speed: 7
-  reward: 5
+  speed: 6
+  reward: 10
   type: 0
