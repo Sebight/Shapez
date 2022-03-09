@@ -143,10 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b1985b335079f4ab4f084f8e7d9f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerName: Sphere Maniac
   gameManager: {fileID: 0}
   range: 8
   fireRate: 0.1
   damage: 8
+  damageGiven: 0
   cost: 50
 --- !u!120 &-6148501327276794862
 LineRenderer:

@@ -112,10 +112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b13239af24602043ae0e11bebcc949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerName: Rectangle Idler
   gameManager: {fileID: 0}
   range: 6
   fireRate: 0.2
   damage: 3
+  damageGiven: 0
   cost: 10
 --- !u!120 &5047683624314281404
 LineRenderer:

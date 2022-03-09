@@ -16,12 +16,19 @@ public class UIManager : MonoBehaviour
     public GameObject towersOptions;
 
     public GameObject towersParent;
+
+    public GameObject towerInfoPanel;
+    public TextMeshProUGUI towerInfoPanelName;
+    public TextMeshProUGUI towerInfoPanelDamage;
+
+    public Button sellTower;
     
     
     public Button playButton;
     public Button leaderboardButton;
     public Button quitButton;
 
+    private Tower tower;
 
     public void UpdateMoneyText(int amount)
     {
@@ -39,10 +46,20 @@ public class UIManager : MonoBehaviour
         UpdateMoneyText(money);
     }
 
+    public void DisplayTowerInfo(Tower t)
+    {
+        towerInfoPanel.SetActive(true);
+        towerInfoPanelName.text = t.towerName;
+        towerInfoPanelDamage.text = t.damageGiven.ToString();
+        tower = t;
+    }
+
+    public void HideTowerInfo() => towerInfoPanel.SetActive(false);
+
     public void GenerateTowerButtons()
     {
         int n = 0;
-        foreach (GameObject tower in gameManager.interactionManager.towersPrefabs)
+        foreach (GameObject tower in gameManager.towersPrefabs)
         {
             Tower towerComponent = tower.GetComponent<Tower>();
             GameObject button = Instantiate(towerButtonPrefab, towersParent.transform);
@@ -84,6 +101,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (towerInfoPanel.activeInHierarchy)
+        {
+            Debug.Log("ajajja");
+            towerInfoPanelDamage.text = tower.damageGiven.ToString();
+        }
     }
 }

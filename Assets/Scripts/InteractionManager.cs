@@ -18,8 +18,6 @@ public class InteractionManager : MonoBehaviour
     public int placingTowerIndex;
 
     private Tower selectedTower;
-    public List<GameObject> towersPrefabs;
-
 
 
     // Start is called before the first frame update
@@ -32,9 +30,10 @@ public class InteractionManager : MonoBehaviour
         if (selectedTower != null)
         {
             selectedTower.OnDeselect(true);
+            gameManager.uiManager.HideTowerInfo();
             selectedTower = null;
         }
-        towersPrefabs[placingTowerIndex].SetActive(false);
+        gameManager.towersPrefabs[placingTowerIndex].SetActive(false);
         placingTower = true;
         placingTowerIndex = index;
     }
@@ -44,6 +43,7 @@ public class InteractionManager : MonoBehaviour
         if (selectedTower != null)
         {
             selectedTower.OnDeselect();
+            gameManager.uiManager.HideTowerInfo();
             selectedTower = null;
         }
         bool isMouseOverUnplacable = false;
@@ -51,7 +51,7 @@ public class InteractionManager : MonoBehaviour
         {
             if (hit.transform.CompareTag("Ground"))
             {
-                towerPrefab = towersPrefabs[towerIndex];
+                towerPrefab = gameManager.towersPrefabs[towerIndex];
                 towerPrefab.SetActive(true);
                 towerPrefab.transform.position = Vector3.Lerp(towerPrefab.transform.position, new Vector3(hit.point.x, 1.4f, hit.point.z), 0.8f);
             }
@@ -93,9 +93,11 @@ public class InteractionManager : MonoBehaviour
                     if (selectedTower != null)
                     {
                         selectedTower.OnDeselect(true);
+                        gameManager.uiManager.HideTowerInfo();
                         selectedTower = null;
                     }
                     tower.OnSelect(particleSystem);
+                    gameManager.uiManager.DisplayTowerInfo(tower);
                     selectedTower = tower;
                 }
                 else
@@ -103,6 +105,7 @@ public class InteractionManager : MonoBehaviour
                     if (selectedTower != null)
                     {
                         selectedTower.OnDeselect(true);
+                        gameManager.uiManager.HideTowerInfo();
                         selectedTower = null;
                     }
                 }
@@ -139,10 +142,11 @@ public class InteractionManager : MonoBehaviour
         {
             placingTower = false;
             particleSystem.gameObject.SetActive(false);
-            towersPrefabs[placingTowerIndex].SetActive(false);
+            gameManager.towersPrefabs[placingTowerIndex].SetActive(false);
             if (selectedTower != null)
             {
                 selectedTower.OnDeselect();
+                gameManager.uiManager.HideTowerInfo();
                 selectedTower = null;
             }
         }

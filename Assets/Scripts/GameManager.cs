@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 {
     public List<Tower> towersPlaced = new List<Tower>();
     public List<GameObject> enemiesPrefabs = new List<GameObject>();
+    public List<GameObject> towersPrefabs;
+
     public List<Enemy> enemies = new List<Enemy>();
     public int money;
     //Health left for the player

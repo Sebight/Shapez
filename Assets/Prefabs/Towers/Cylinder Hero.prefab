@@ -144,10 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5037ece04a64cda81c4a4a0577275a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerName: Cyllinder Hero
   gameManager: {fileID: 0}
   range: 8
   fireRate: 0.1
   damage: 15
+  damageGiven: 0
   cost: 80
 --- !u!120 &3874034877493998707
 LineRenderer:

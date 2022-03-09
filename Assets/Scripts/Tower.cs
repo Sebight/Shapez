@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public string towerName;
     public GameManager gameManager;
 
     public float range = 10f;
     public float fireRate = 1f;
     public int damage;
+    public int damageGiven;
     public int cost = 10;
 
     private float nextAttackTime;
@@ -113,7 +115,7 @@ public class Tower : MonoBehaviour
                 line.SetPosition(1, nearestEnemy.transform.position);
                 line.enabled = true;
                 StartCoroutine(DisableLine(line));
-
+                damageGiven += damage;
                 nearestEnemy.TakeDamage(damage);
             }
         }
