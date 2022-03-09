@@ -103,7 +103,6 @@ public class UIManager : MonoBehaviour
     {
         if (towerInfoPanel.activeInHierarchy)
         {
-            Debug.Log("ajajja");
             towerInfoPanelDamage.text = tower.damageGiven.ToString();
         }
     }

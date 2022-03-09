@@ -115,7 +115,18 @@ public class Tower : MonoBehaviour
                 line.SetPosition(1, nearestEnemy.transform.position);
                 line.enabled = true;
                 StartCoroutine(DisableLine(line));
-                damageGiven += damage;
+
+                //If the damage kills the enemy, then there is some rest which was not damaged
+                if (nearestEnemy.health - damage >= 0)
+                {
+                    damageGiven += damage;
+                }
+                else
+                {
+                    //Add whatever is left to 0
+                    damageGiven += nearestEnemy.health;
+                }
+
                 nearestEnemy.TakeDamage(damage);
             }
         }
