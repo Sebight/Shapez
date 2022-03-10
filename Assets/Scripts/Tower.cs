@@ -108,6 +108,12 @@ public class Tower : MonoBehaviour
             Enemy nearestEnemy = GetNearestEnemy();
             if (nearestEnemy != null && Vector3.Distance(transform.position, nearestEnemy.transform.position) <= range)
             {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, nearestEnemy.transform.position - transform.position, out hit, range))
+                {
+                    if (hit.collider.gameObject.tag != "Enemy") return;
+                }
+
                 //Shoot a line from the tower to the enemy
 
                 LineRenderer line = gameObject.GetComponent<LineRenderer>();
@@ -115,6 +121,8 @@ public class Tower : MonoBehaviour
                 line.SetPosition(1, nearestEnemy.transform.position);
                 line.enabled = true;
                 StartCoroutine(DisableLine(line));
+
+                //Check if there is any obstacle between tower and the player
 
                 //If the damage kills the enemy, then there is some rest which was not damaged
                 if (nearestEnemy.health - damage >= 0)

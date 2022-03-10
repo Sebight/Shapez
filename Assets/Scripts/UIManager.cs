@@ -22,8 +22,16 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI towerInfoPanelDamage;
 
     public Button sellTower;
-    
-    
+
+    public GameObject namePrompt;
+    public TextMeshProUGUI namePromptText;
+    public TMP_InputField nameInput;
+    public Button namePromptContinue;
+
+    public TextMeshProUGUI usernameText;
+
+
+
     public Button playButton;
     public Button leaderboardButton;
     public Button quitButton;
@@ -77,25 +85,74 @@ public class UIManager : MonoBehaviour
             n++;
         }
     }
-    
-    
+
+
     //Menu Behaviour
     public void Play()
     {
-        gameManager.StartGame();
+        PlayerPrefs.SetString("username", "");
+        PlayerPrefs.Save();
+        // gameManager.StartGame();
         playButton.gameObject.SetActive(false);
         leaderboardButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
-        
-        waveText.gameObject.SetActive(true);
-        towersOptions.SetActive(true);
-        moneyText.gameObject.SetActive(true);
+        usernameText.gameObject.SetActive(false);
+
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("username")))
+        {
+            DisplayNamePrompt();
+        }
+        else
+        {
+            gameManager.StartGame();
+            waveText.gameObject.SetActive(true);
+            towersOptions.SetActive(true);
+            moneyText.gameObject.SetActive(true);
+        }
+
+
+
+    }
+
+    public void DisplayNamePrompt()
+    {
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("username")))
+        {
+            namePrompt.SetActive(true);
+
+
+            namePromptContinue.onClick.AddListener(() =>
+            {
+                if (string.IsNullOrEmpty(nameInput.text) || nameInput.text.Length > 20)
+                {
+                    namePromptText.text = "Please enter a different name";
+                    StartCoroutine(ResetNamePromptText());
+                }
+                else
+                {
+                    PlayerPrefs.SetString("username", nameInput.text);
+                    namePrompt.SetActive(false);
+                    gameManager.StartGame();
+                    waveText.gameObject.SetActive(true);
+                    towersOptions.SetActive(true);
+                    moneyText.gameObject.SetActive(true);
+
+                }
+            });
+        }
+    }
+
+    public IEnumerator ResetNamePromptText()
+    {
+        yield return new WaitForSeconds(1f);
+        namePromptText.text = "Please enter your name";
     }
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateTowerButtons();
+        usernameText.text = "Logged in as: "+PlayerPrefs.GetString("username");
     }
 
     // Update is called once per frame
