@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI towerInfoPanelName;
     public TextMeshProUGUI towerInfoPanelDamage;
 
+    public GameObject youLostPanel;
+
     public Button sellTower;
 
     public GameObject namePrompt;
@@ -148,11 +150,29 @@ public class UIManager : MonoBehaviour
         namePromptText.text = "Please enter your name";
     }
 
+    public void DisplayYouLost()
+    {
+        youLostPanel.SetActive(true);
+    }
+
+    public void ReturnToMenu()
+    {
+        youLostPanel.SetActive(false);
+        playButton.gameObject.SetActive(true);
+        leaderboardButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+        usernameText.gameObject.SetActive(true);
+
+        towersOptions.SetActive(false);
+        waveText.gameObject.SetActive(false);
+        moneyText.gameObject.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         GenerateTowerButtons();
-        usernameText.text = "Logged in as: "+PlayerPrefs.GetString("username");
+        usernameText.text = "Logged in as: " + PlayerPrefs.GetString("username");
     }
 
     // Update is called once per frame

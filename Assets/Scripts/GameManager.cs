@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     //Managers
     public UIManager uiManager;
     public WaveManager waveManager;
+    public Leaderboard leaderboard;
 
     public InteractionManager interactionManager;
 
@@ -66,7 +67,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator SpawnWave(WaveDefinition wave)
     {
-        yield return new WaitForSeconds(4);
+        //! uncomment
+        // yield return new WaitForSeconds(4);
         List<WaveDefinitionElement> waveDefinition = wave.definition;
         for (int i = 0; i < waveDefinition.Count; i++)
         {
@@ -148,11 +150,39 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        leaderboard.AddEntry(new LeaderboardEntry(PlayerPrefs.GetString("username"), waveManager.GetCurrentWave()));
+        waveManager.Reset();
+        uiManager.DisplayYouLost();
+
+
+        gameStarted = false;
+        waveRunning = false;
+
+        //Destroy all towers and all enemies
+        for (int i = 0; i < towersPlaced.Count; i++)
+        {
+            Destroy(towersPlaced[i].gameObject);
+        }
+        towersPlaced.Clear();
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i].gameObject);
+        }
+        enemies.Clear();
+
+        foreach (var prefab in towersPrefabs)
+        {
+            prefab.SetActive(false);
+        }
+
+        health = 100;
     }
 
     public void StartGame()
     {
+        uiManager.UpdateMoneyText(money);
+        health = 100;
+        money = 50;
         gameStarted = true;
     }
 

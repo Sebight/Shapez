@@ -41,6 +41,11 @@ public class WaveManager : MonoBehaviour
 
     public WaveDefinition GetCurrentWaveDefinition() => waves[currentWave - 1];
 
+    public void Reset()
+    {
+        currentWave = 0;
+    }
+
     public void InfiniteWave()
     {
         if (currentWave == 1) enemyTypesInWaves.Add(gameManager.enemiesPrefabs[0].GetComponent<Enemy>());
