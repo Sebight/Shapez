@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        leaderboard.AddEntry(new LeaderboardEntry(PlayerPrefs.GetString("username"), waveManager.GetCurrentWave()));
+        StartCoroutine(leaderboard.AddEntry(new LeaderboardEntry(PlayerPrefs.GetString("username"), waveManager.GetCurrentWave())));
         waveManager.Reset();
         uiManager.DisplayYouLost();
 
@@ -193,5 +193,11 @@ public class GameManager : MonoBehaviour
         towersPlaced.Add(tower);
         tower.enabled = true;
         tower.Initialize(this);
+    }
+    
+    [ContextMenu("Clear PlayerPrefs")]
+    public void ClearPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

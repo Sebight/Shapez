@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public class LeaderboardEntry
@@ -17,20 +18,68 @@ public class LeaderboardEntry
     }
 }
 
+public class LeaderboardReqWrap
+{
+    public LeaderboardEntry leaderboardData;
+}
+
+
+
 public class Leaderboard : MonoBehaviour
 {
-
     public GameManager gameManager;
 
     public List<LeaderboardEntry> leaderboard = new List<LeaderboardEntry>();
 
     public int maxEntries = 10;
 
-    public void AddEntry(LeaderboardEntry entry)
+    public IEnumerator AddEntry(LeaderboardEntry entry)
     {
-        leaderboard.Add(entry);
+        // leaderboard.Add(entry);
 
+        LeaderboardReqWrap entryWrap = new LeaderboardReqWrap();
+        entryWrap.leaderboardData = entry;
+
+        string bodyData = JsonConvert.SerializeObject(entryWrap);
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(bodyData);
+
+        UnityWebRequest request = new UnityWebRequest();
+        request.url = "http://localhost:3000/leaderboard/new";
+        request.method = "POST";
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+        Debug.Log(request.result);
+        
+        
         //Sort the leadeboard and trim it to maxEntries
+        // leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
+        // try
+        // {
+        //     leaderboard.RemoveRange(maxEntries, leaderboard.Count - maxEntries);
+        // } catch
+        // {
+        //
+        // }
+        // Save();
+    }
+
+    public IEnumerator GetLeaderboard(System.Action<List<LeaderboardEntry>> callback)
+    {
+        //Get the leaderboard from the server
+        
+        UnityWebRequest request = new UnityWebRequest();
+        request.url = "http://localhost:3000/leaderboard/all";
+        request.method = "GET";
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        
+        yield return request.SendWebRequest();
+        string leaderboardData = request.downloadHandler.text;
+        leaderboard = JsonConvert.DeserializeObject<List<LeaderboardEntry>>(request.downloadHandler.text);
+        
         leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
         try
         {
@@ -39,13 +88,10 @@ public class Leaderboard : MonoBehaviour
         {
 
         }
-        Save();
-    }
 
-    public List<LeaderboardEntry> GetLeaderboard()
-    {
-        leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
-        return leaderboard;
+        callback?.Invoke(leaderboard);
+        
+        // return leaderboard;
     }
 
     public void Save()
@@ -66,12 +112,11 @@ public class Leaderboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Load();
+        // Load();
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 }

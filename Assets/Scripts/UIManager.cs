@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     public GameManager gameManager;
 
     public GameObject towerButtonPrefab;
@@ -31,7 +30,6 @@ public class UIManager : MonoBehaviour
     public Button namePromptContinue;
 
     public TextMeshProUGUI usernameText;
-
 
 
     public Button playButton;
@@ -84,10 +82,7 @@ public class UIManager : MonoBehaviour
 
             towerButComponnet.towerIndex = n;
 
-            button.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                gameManager.interactionManager.EquipTower(towerButComponnet.towerIndex);
-            });
+            button.GetComponent<Button>().onClick.AddListener(() => { gameManager.interactionManager.EquipTower(towerButComponnet.towerIndex); });
             n++;
         }
     }
@@ -96,8 +91,8 @@ public class UIManager : MonoBehaviour
     //Menu Behaviour
     public void Play()
     {
-        PlayerPrefs.SetString("username", "");
-        PlayerPrefs.Save();
+        // PlayerPrefs.SetString("username", "");
+        // PlayerPrefs.Save();
         // gameManager.StartGame();
         playButton.gameObject.SetActive(false);
         leaderboardButton.gameObject.SetActive(false);
@@ -115,9 +110,6 @@ public class UIManager : MonoBehaviour
             towersOptions.SetActive(true);
             moneyText.gameObject.SetActive(true);
         }
-
-
-
     }
 
     public void DisplayNamePrompt()
@@ -142,7 +134,6 @@ public class UIManager : MonoBehaviour
                     waveText.gameObject.SetActive(true);
                     towersOptions.SetActive(true);
                     moneyText.gameObject.SetActive(true);
-
                 }
             });
         }
@@ -180,14 +171,17 @@ public class UIManager : MonoBehaviour
             Destroy(leaderboardContentParent.transform.GetChild(i).gameObject);
         }
 
-        List<LeaderboardEntry> leaderboardData = gameManager.leaderboard.GetLeaderboard();
-
-        for (int i = 0; i < leaderboardData.Count; i++)
+        // List<LeaderboardEntry> leaderboardData = StartCoroutine(gameManager.leaderboard.GetLeaderboard());
+        StartCoroutine(gameManager.leaderboard.GetLeaderboard((leaderboardData) =>
         {
-            GameObject leaderboardCell = Instantiate(leaderboardCellPrefab, leaderboardContentParent.transform);
-            leaderboardCell.GetComponent<LeaderboardCell>().Populate(i+1, leaderboardData[i]);
-        }
-        leaderboardPanel.SetActive(true);
+            for (int i = 0; i < leaderboardData.Count; i++)
+            {
+                GameObject leaderboardCell = Instantiate(leaderboardCellPrefab, leaderboardContentParent.transform);
+                leaderboardCell.GetComponent<LeaderboardCell>().Populate(i + 1, leaderboardData[i]);
+            }
+
+            leaderboardPanel.SetActive(true);
+        }));
     }
 
     // Start is called before the first frame update
