@@ -42,6 +42,12 @@ public class Leaderboard : MonoBehaviour
         Save();
     }
 
+    public List<LeaderboardEntry> GetLeaderboard()
+    {
+        leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
+        return leaderboard;
+    }
+
     public void Save()
     {
         //Save the leaderboard to a file
@@ -60,7 +66,7 @@ public class Leaderboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Load();
     }
 
     // Update is called once per frame

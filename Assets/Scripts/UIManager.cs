@@ -38,6 +38,10 @@ public class UIManager : MonoBehaviour
     public Button leaderboardButton;
     public Button quitButton;
 
+    public GameObject leaderboardPanel;
+    public GameObject leaderboardContentParent;
+    public GameObject leaderboardCellPrefab;
+
     private Tower tower;
 
     public void UpdateMoneyText(int amount)
@@ -166,6 +170,24 @@ public class UIManager : MonoBehaviour
         towersOptions.SetActive(false);
         waveText.gameObject.SetActive(false);
         moneyText.gameObject.SetActive(false);
+    }
+
+    public void CreateLeaderboard()
+    {
+        //Destroy all current children
+        for (int i = 0; i < leaderboardContentParent.transform.childCount; i++)
+        {
+            Destroy(leaderboardContentParent.transform.GetChild(i).gameObject);
+        }
+
+        List<LeaderboardEntry> leaderboardData = gameManager.leaderboard.GetLeaderboard();
+
+        for (int i = 0; i < leaderboardData.Count; i++)
+        {
+            GameObject leaderboardCell = Instantiate(leaderboardCellPrefab, leaderboardContentParent.transform);
+            leaderboardCell.GetComponent<LeaderboardCell>().Populate(i+1, leaderboardData[i]);
+        }
+        leaderboardPanel.SetActive(true);
     }
 
     // Start is called before the first frame update
