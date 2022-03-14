@@ -118,7 +118,8 @@ MonoBehaviour:
   fireRate: 0.2
   damage: 3
   damageGiven: 0
-  cost: 10
+  cost: 25
+  canSeeStealth: 0
 --- !u!120 &5047683624314281404
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -16,7 +16,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> towersPrefabs;
 
     public List<Enemy> enemies = new List<Enemy>();
+
+    [Header("Starting money")] public int startingMoney;
+    
     public int money;
+    
     //Health left for the player
     public int health = 100;
 
@@ -124,7 +128,8 @@ public class GameManager : MonoBehaviour
                     WaveDefinition wave = waveManager.GetCurrentWaveDefinition();
                     StartCoroutine(SpawnWave(wave));
                 }
-            } else if (gamemode == Gamemode.Infinite)
+            }
+            else if (gamemode == Gamemode.Infinite)
             {
                 if (enemies.Count == 0)
                 {
@@ -135,7 +140,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void DamagePlayer(int damage)
@@ -163,11 +167,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(towersPlaced[i].gameObject);
         }
+
         towersPlaced.Clear();
         for (int i = 0; i < enemies.Count; i++)
         {
             Destroy(enemies[i].gameObject);
         }
+
         enemies.Clear();
 
         foreach (var prefab in towersPrefabs)
@@ -178,11 +184,17 @@ public class GameManager : MonoBehaviour
         health = 100;
     }
 
+    public void RemoveTower(Tower t)
+    {
+        towersPlaced.Remove(t);
+        Destroy(t.gameObject);
+    }
+
     public void StartGame()
     {
-        uiManager.UpdateMoneyText(money);
         health = 100;
-        money = 50;
+        money = startingMoney;
+        uiManager.UpdateMoneyText(money);
         gameStarted = true;
     }
 
@@ -194,7 +206,7 @@ public class GameManager : MonoBehaviour
         tower.enabled = true;
         tower.Initialize(this);
     }
-    
+
     [ContextMenu("Clear PlayerPrefs")]
     public void ClearPlayerPrefs()
     {

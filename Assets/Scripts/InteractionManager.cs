@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
@@ -33,6 +34,7 @@ public class InteractionManager : MonoBehaviour
             gameManager.uiManager.HideTowerInfo();
             selectedTower = null;
         }
+
         gameManager.towersPrefabs[placingTowerIndex].SetActive(false);
         placingTower = true;
         placingTowerIndex = index;
@@ -46,6 +48,7 @@ public class InteractionManager : MonoBehaviour
             gameManager.uiManager.HideTowerInfo();
             selectedTower = null;
         }
+
         bool isMouseOverUnplacable = false;
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
@@ -77,6 +80,7 @@ public class InteractionManager : MonoBehaviour
                 gameManager.RegisterTower(go.GetComponent<Tower>());
                 placingTower = false;
                 particleSystem.gameObject.SetActive(false);
+                towerPrefab.SetActive(false);
             }
         }
     }
@@ -96,6 +100,7 @@ public class InteractionManager : MonoBehaviour
                         gameManager.uiManager.HideTowerInfo();
                         selectedTower = null;
                     }
+
                     tower.OnSelect(particleSystem);
                     gameManager.uiManager.DisplayTowerInfo(tower);
                     selectedTower = tower;
@@ -111,7 +116,18 @@ public class InteractionManager : MonoBehaviour
                 }
             }
         }
+    }
 
+    public void SellTower()
+    {
+        if (selectedTower != null)
+        {
+            selectedTower.OnDeselect(true);
+            gameManager.uiManager.HideTowerInfo();
+            gameManager.RemoveTower(selectedTower);
+            gameManager.UpdateMoney(selectedTower.cost / 3);
+            selectedTower = null;
+        }
     }
 
     // Update is called once per frame

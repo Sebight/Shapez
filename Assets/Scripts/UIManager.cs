@@ -161,6 +161,7 @@ public class UIManager : MonoBehaviour
         towersOptions.SetActive(false);
         waveText.gameObject.SetActive(false);
         moneyText.gameObject.SetActive(false);
+        leaderboardPanel.SetActive(false);
     }
 
     public void CreateLeaderboard()

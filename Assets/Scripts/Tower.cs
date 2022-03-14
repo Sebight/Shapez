@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     public int damage;
     public int damageGiven;
     public int cost = 10;
+    public bool canSeeStealth;
 
     private float nextAttackTime;
 
@@ -27,7 +28,6 @@ public class Tower : MonoBehaviour
 
     public virtual void OnSelect()
     {
-
         //Draw circle around tower
         //Draw range of tower
 
@@ -45,12 +45,10 @@ public class Tower : MonoBehaviour
             cube.transform.position = new Vector3(x, 1, z);
             angle += theta;
         }
-
     }
 
     public virtual void OnSelect(ParticleSystem particle)
     {
-
         //Draw circle around tower
         //Draw range of tower
         ParticleSystem newParticle = Instantiate(particle);
@@ -63,14 +61,12 @@ public class Tower : MonoBehaviour
 
     public virtual void OnDeselect()
     {
-
         //Remove circle around tower
         //! This can stop working if the tower's hierarchy is moved!!!
         for (int i = 0; i < transform.GetChild(0).childCount; i++)
         {
             Destroy(transform.GetChild(0).GetChild(i).gameObject);
         }
-
     }
 
     public virtual void OnDeselect(bool particle)
@@ -104,10 +100,17 @@ public class Tower : MonoBehaviour
     {
         if (nextAttackTime <= Time.time)
         {
-            nextAttackTime = Time.time + fireRate;
             Enemy nearestEnemy = GetNearestEnemy();
+
+
             if (nearestEnemy != null && Vector3.Distance(transform.position, nearestEnemy.transform.position) <= range)
             {
+                if (nearestEnemy.isStealth)
+                {
+                    if (!canSeeStealth) return;
+                }
+
+                nextAttackTime = Time.time + fireRate;
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, nearestEnemy.transform.position - transform.position, out hit, range))
                 {

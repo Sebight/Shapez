@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public enum EnemyType
-{
-    Normal,
-    Stealth,
-    Boss
-}
+// public enum EnemyType
+// {
+//     Normal,
+//     Stealth,
+//     Boss
+// }
 
 public class Enemy : MonoBehaviour
 {
@@ -20,9 +20,9 @@ public class Enemy : MonoBehaviour
     public int health;
     public int damage;
     public int speed;
-
+    public bool isStealth;
     public int reward;
-    public EnemyType type;
+    // public EnemyType type;
 
 
     private int currentWaypoint = 0;

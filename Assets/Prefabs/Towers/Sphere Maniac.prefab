@@ -150,6 +150,7 @@ MonoBehaviour:
   damage: 8
   damageGiven: 0
   cost: 50
+  canSeeStealth: 0
 --- !u!120 &-6148501327276794862
 LineRenderer:
   m_ObjectHideFlags: 0
