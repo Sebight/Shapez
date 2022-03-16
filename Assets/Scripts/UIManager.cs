@@ -40,6 +40,10 @@ public class UIManager : MonoBehaviour
     public GameObject leaderboardContentParent;
     public GameObject leaderboardCellPrefab;
 
+    public TextMeshProUGUI playerHealthText;
+
+    public Button speedUpButton;
+
     private Tower tower;
 
     public void UpdateMoneyText(int amount)
@@ -87,7 +91,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
+    public void SpeedUpGame()
+    {
+        TextMeshProUGUI text = speedUpButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        if (Time.timeScale == 2)
+        {
+            gameManager.SetTimeScale(1);
+            text.text = ">";
+        }
+        else
+        {
+            gameManager.SetTimeScale(2);
+            text.text = ">>>";
+        }
+        
+    }
+    
     //Menu Behaviour
     public void Play()
     {
@@ -109,6 +128,8 @@ public class UIManager : MonoBehaviour
             waveText.gameObject.SetActive(true);
             towersOptions.SetActive(true);
             moneyText.gameObject.SetActive(true);
+            playerHealthText.gameObject.SetActive(true);
+            speedUpButton.gameObject.SetActive(true);
         }
     }
 
@@ -162,8 +183,10 @@ public class UIManager : MonoBehaviour
         waveText.gameObject.SetActive(false);
         moneyText.gameObject.SetActive(false);
         leaderboardPanel.SetActive(false);
+        playerHealthText.gameObject.SetActive(false);
+        speedUpButton.gameObject.SetActive(false);
     }
-
+    
     public void CreateLeaderboard()
     {
         //Destroy all current children
@@ -183,6 +206,18 @@ public class UIManager : MonoBehaviour
 
             leaderboardPanel.SetActive(true);
         }));
+    }
+    
+    public void UpdateHealthText(int n)
+    {
+        playerHealthText.text = "Health: " + n;
+    }
+    
+    public void ResetSpeedButtonState() => speedUpButton.GetComponentInChildren<TextMeshProUGUI>().text = ">";
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     // Start is called before the first frame update

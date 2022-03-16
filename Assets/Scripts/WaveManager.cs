@@ -5,29 +5,23 @@ using UnityEngine;
 [System.Serializable]
 public struct WaveDefinitionElement
 {
-    [Header("Wave enemy")]
-    public Enemy enemyType;
+    [Header("Wave enemy")] public Enemy enemyType;
     public int count;
 }
 
 [System.Serializable]
 public class WaveDefinition
 {
-    [Header("Wave settings")]
-    public List<WaveDefinitionElement> definition = new List<WaveDefinitionElement>();
+    [Header("Wave settings")] public List<WaveDefinitionElement> definition = new List<WaveDefinitionElement>();
 }
 
 public class WaveManager : MonoBehaviour
 {
+    [Header("Waves definition")] public List<WaveDefinition> waves = new List<WaveDefinition>();
 
-    [Header("Waves definition")]
-    public List<WaveDefinition> waves = new List<WaveDefinition>();
+    [Header("Enemies amount per wave")] public int enemiesPerWave;
 
-    [Header("Enemies amount per wave")]
-    public int enemiesPerWave;
-
-    [Header("How often enemies add")]
-    public int waveChangeRate;
+    [Header("How often enemies add")] public int waveChangeRate;
 
     public GameManager gameManager;
 
@@ -59,6 +53,8 @@ public class WaveManager : MonoBehaviour
             }
         }
 
+        List<System.Type> enemiesUpgraded = new List<System.Type>();
+
         for (int i = 0; i < enemyTypesInWaves.Count; i++)
         {
             List<Enemy> enemiesInWave = new List<Enemy>();
@@ -67,12 +63,16 @@ public class WaveManager : MonoBehaviour
             int spawns = currentWave / (i + 1) * enemiesPerWave;
             for (int j = 0; j < spawns; j++)
             {
+                Enemy enemy = enemyTypesInWaves[i];
+                if (!(enemiesUpgraded.Contains(enemy.GetType())))
+                {
+                    enemy.health += 1;
+                    enemiesUpgraded.Add(enemy.GetType());
+                }
                 enemiesInWave.Add(enemyTypesInWaves[i]);
             }
 
             StartCoroutine(gameManager.SpawnWave(enemiesInWave));
         }
-
     }
-
 }

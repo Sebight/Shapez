@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     public Transform pathWaypoints;
 
+    public int baseHealth;
     public int health;
     public int damage;
     public int speed;
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     public virtual void Initialize(GameManager gameManager)
     {
         this.gameManager = gameManager;
+        health = baseHealth;
     }
 
     public virtual void Navigate()

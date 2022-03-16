@@ -142,9 +142,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetTimeScale(int n) => Time.timeScale = n;
+    
     public void DamagePlayer(int damage)
     {
         health -= damage;
+        uiManager.UpdateHealthText(health);
         if (health <= 0)
         {
             health = 0;
@@ -157,7 +160,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(leaderboard.AddEntry(new LeaderboardEntry(PlayerPrefs.GetString("username"), waveManager.GetCurrentWave())));
         waveManager.Reset();
         uiManager.DisplayYouLost();
-
+        interactionManager.ResetSelect();
+        interactionManager.ResetPlacing();
 
         gameStarted = false;
         waveRunning = false;
@@ -193,9 +197,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         health = 100;
+        uiManager.UpdateHealthText(health);
         money = startingMoney;
         uiManager.UpdateMoneyText(money);
         gameStarted = true;
+        Time.timeScale = 1;
+        uiManager.ResetSpeedButtonState();
     }
 
     public void RegisterTower(Tower tower)

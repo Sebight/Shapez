@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   pathWaypoints: {fileID: 0}
+  baseHealth: 2
   health: 2
   damage: 25
   speed: 10

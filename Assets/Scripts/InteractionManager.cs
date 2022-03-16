@@ -78,9 +78,7 @@ public class InteractionManager : MonoBehaviour
                 GameObject go = Instantiate(towerPrefab, towerPrefab.transform.position, towerPrefab.transform.rotation);
                 go.GetComponent<Collider>().enabled = true;
                 gameManager.RegisterTower(go.GetComponent<Tower>());
-                placingTower = false;
-                particleSystem.gameObject.SetActive(false);
-                towerPrefab.SetActive(false);
+                ResetPlacing();
             }
         }
     }
@@ -94,12 +92,7 @@ public class InteractionManager : MonoBehaviour
                 Tower tower = hit.transform.GetComponent<Tower>();
                 if (tower != null)
                 {
-                    if (selectedTower != null)
-                    {
-                        selectedTower.OnDeselect(true);
-                        gameManager.uiManager.HideTowerInfo();
-                        selectedTower = null;
-                    }
+                    ResetSelect();
 
                     tower.OnSelect(particleSystem);
                     gameManager.uiManager.DisplayTowerInfo(tower);
@@ -107,12 +100,7 @@ public class InteractionManager : MonoBehaviour
                 }
                 else
                 {
-                    if (selectedTower != null)
-                    {
-                        selectedTower.OnDeselect(true);
-                        gameManager.uiManager.HideTowerInfo();
-                        selectedTower = null;
-                    }
+                    ResetSelect();
                 }
             }
         }
@@ -128,6 +116,23 @@ public class InteractionManager : MonoBehaviour
             gameManager.UpdateMoney(selectedTower.cost / 3);
             selectedTower = null;
         }
+    }
+
+    public void ResetSelect()
+    {
+        if (selectedTower != null)
+        {
+            selectedTower.OnDeselect(true);
+            gameManager.uiManager.HideTowerInfo();
+            selectedTower = null;
+        }
+    }
+
+    public void ResetPlacing()
+    {
+        placingTower = false;
+        particleSystem.gameObject.SetActive(false);
+        towerPrefab.SetActive(false);
     }
 
     // Update is called once per frame
@@ -156,15 +161,8 @@ public class InteractionManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && placingTower)
         {
-            placingTower = false;
-            particleSystem.gameObject.SetActive(false);
-            gameManager.towersPrefabs[placingTowerIndex].SetActive(false);
-            if (selectedTower != null)
-            {
-                selectedTower.OnDeselect();
-                gameManager.uiManager.HideTowerInfo();
-                selectedTower = null;
-            }
+            ResetPlacing();
+            ResetSelect();
         }
     }
 }

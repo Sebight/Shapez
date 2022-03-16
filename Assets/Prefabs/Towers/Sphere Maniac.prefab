@@ -146,7 +146,7 @@ MonoBehaviour:
   towerName: Sphere Maniac
   gameManager: {fileID: 0}
   range: 8
-  fireRate: 0.3
+  fireRate: 0.4
   damage: 8
   damageGiven: 0
   cost: 50

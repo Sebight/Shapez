@@ -44,7 +44,7 @@ public class Leaderboard : MonoBehaviour
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(bodyData);
 
         UnityWebRequest request = new UnityWebRequest();
-        request.url = "http://localhost:3000/leaderboard/new";
+        request.url = "https://shapez-api.sebight.eu/leaderboard/new";
         request.method = "POST";
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -71,7 +71,7 @@ public class Leaderboard : MonoBehaviour
         //Get the leaderboard from the server
         
         UnityWebRequest request = new UnityWebRequest();
-        request.url = "http://localhost:3000/leaderboard/all";
+        request.url = "https://shapez-api.sebight.eu/leaderboard/all";
         request.method = "GET";
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");

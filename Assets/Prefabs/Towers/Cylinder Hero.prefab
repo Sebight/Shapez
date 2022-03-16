@@ -147,7 +147,7 @@ MonoBehaviour:
   towerName: Cyllinder Hero
   gameManager: {fileID: 0}
   range: 8
-  fireRate: 0.1
+  fireRate: 0.15
   damage: 15
   damageGiven: 0
   cost: 150

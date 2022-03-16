@@ -113,8 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   pathWaypoints: {fileID: 0}
+  baseHealth: 500
   health: 500
   damage: 100
   speed: 3
-  reward: 20
-  type: 2
+  isStealth: 0
+  reward: 10
