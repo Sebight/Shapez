@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
     public virtual void Initialize(GameManager gameManager)
     {
         this.gameManager = gameManager;
+        // health = baseHealth;
+    }
+
+    public void ResetUpgradedStats()
+    {
         health = baseHealth;
     }
 

@@ -196,6 +196,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+
+        foreach (var enemy in enemiesPrefabs)
+        {
+            enemy.GetComponent<Enemy>().ResetUpgradedStats();
+        }
+
         health = 100;
         uiManager.UpdateHealthText(health);
         money = startingMoney;
