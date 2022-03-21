@@ -66,7 +66,10 @@ public class WaveManager : MonoBehaviour
                 Enemy enemy = enemyTypesInWaves[i];
                 if (!(enemiesUpgraded.Contains(enemy.GetType())))
                 {
-                    enemy.health += 1;
+                    // enemy.health += 1;
+                    //0.5% of base health every wave
+                    int hpAdd = (int)(enemy.baseHealth * (0.005f*currentWave));
+                    enemy.health += hpAdd;
                     enemiesUpgraded.Add(enemy.GetType());
                 }
                 enemiesInWave.Add(enemyTypesInWaves[i]);

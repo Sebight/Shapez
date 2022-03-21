@@ -12,15 +12,15 @@ GameObject:
   - component: {fileID: 9036741468328115514}
   - component: {fileID: 9036741468328115517}
   - component: {fileID: 9036741468328115516}
-  - component: {fileID: 9036741468328115519}
   - component: {fileID: -8682881101949759138}
+  - component: {fileID: -8402453208075023726}
   m_Layer: 0
-  m_Name: Cube Killer
+  m_Name: Cube Enjoyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9036741468328115515
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9036741468328115518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8494225, y: 1.4, z: -10.182964}
+  m_LocalPosition: {x: 6.842732, y: 1.4, z: -5.1673193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 635461e63898f9e40bfc02c20e6184af, type: 2}
+  - {fileID: 2100000, guid: 4863b8b03d697ff438f9db746bda80f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,26 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9036741468328115519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9036741468328115518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00391b88712f43d9bb2c77ca1273b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerName: Cube Killer
-  gameManager: {fileID: 0}
-  range: 10
-  fireRate: 0.1
-  damage: 50
-  damageGiven: 0
-  cost: 500
-  canSeeStealth: 1
 --- !u!120 &-8682881101949759138
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -218,3 +198,23 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &-8402453208075023726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9036741468328115518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6c1c0bc80f1284ab021fbd8c0bc5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerName: Cube Enjoyer
+  gameManager: {fileID: 0}
+  range: 10
+  fireRate: 0.1
+  damage: 100
+  damageGiven: 0
+  cost: 1000
+  canSeeStealth: 1
