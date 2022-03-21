@@ -38,6 +38,7 @@ public class WaveManager : MonoBehaviour
     public void Reset()
     {
         currentWave = 0;
+        enemyTypesInWaves.Clear();
     }
 
     public void InfiniteWave()
