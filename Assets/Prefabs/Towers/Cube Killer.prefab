@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2409245569108966906
+--- !u!1 &9036741468328115518
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,81 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8694507265789951863}
+  - component: {fileID: 9036741468328115515}
+  - component: {fileID: 9036741468328115514}
+  - component: {fileID: 9036741468328115517}
+  - component: {fileID: 9036741468328115516}
+  - component: {fileID: 9036741468328115519}
+  - component: {fileID: -8682881101949759138}
   m_Layer: 0
-  m_Name: Visualization
+  m_Name: Cube Killer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8694507265789951863
+  m_IsActive: 0
+--- !u!4 &9036741468328115515
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2409245569108966906}
+  m_GameObject: {fileID: 9036741468328115518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.8494225, y: 1.4, z: -10.182964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8547190428277314286}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8547190428277314282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8547190428277314286}
-  - component: {fileID: 8547190428277314287}
-  - component: {fileID: 8547190428277314284}
-  - component: {fileID: 8547190428277314285}
-  - component: {fileID: 9208788239264647156}
-  - component: {fileID: -6148501327276794862}
-  m_Layer: 0
-  m_Name: Sphere Maniac
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8547190428277314286
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547190428277314282}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15094459, y: 1.4, z: -11.298815}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8694507265789951863}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8547190428277314287
+--- !u!33 &9036741468328115514
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547190428277314282}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8547190428277314284
+  m_GameObject: {fileID: 9036741468328115518}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &9036741468328115517
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547190428277314282}
+  m_GameObject: {fileID: 9036741468328115518}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -118,46 +86,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8547190428277314285
-SphereCollider:
+--- !u!65 &9036741468328115516
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547190428277314282}
+  m_GameObject: {fileID: 9036741468328115518}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9208788239264647156
+--- !u!114 &9036741468328115519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547190428277314282}
+  m_GameObject: {fileID: 9036741468328115518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b1985b335079f4ab4f084f8e7d9f96, type: 3}
+  m_Script: {fileID: 11500000, guid: e00391b88712f43d9bb2c77ca1273b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerName: Sphere Maniac
+  towerName: Cube Killer
   gameManager: {fileID: 0}
-  range: 8
-  fireRate: 0.2
-  damage: 8
+  range: 10
+  fireRate: 0.1
+  damage: 50
   damageGiven: 0
-  cost: 50
-  canSeeStealth: 0
---- !u!120 &-6148501327276794862
+  cost: 500
+  canSeeStealth: 1
+--- !u!120 &-8682881101949759138
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547190428277314282}
+  m_GameObject: {fileID: 9036741468328115518}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
