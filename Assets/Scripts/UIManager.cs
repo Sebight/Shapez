@@ -44,6 +44,9 @@ public class UIManager : MonoBehaviour
 
     public Button speedUpButton;
 
+    public Button settingsButton;
+    public GameObject settingsPanel;
+
     private Tower tower;
 
     public void UpdateMoneyText(int amount)
@@ -117,6 +120,7 @@ public class UIManager : MonoBehaviour
         leaderboardButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
         usernameText.gameObject.SetActive(false);
+        settingsButton.gameObject.SetActive(false);
 
         if (string.IsNullOrEmpty(PlayerPrefs.GetString("username")))
         {
@@ -185,6 +189,7 @@ public class UIManager : MonoBehaviour
         leaderboardPanel.SetActive(false);
         playerHealthText.gameObject.SetActive(false);
         speedUpButton.gameObject.SetActive(false);
+        settingsPanel.SetActive(false);
     }
     
     public void CreateLeaderboard()
@@ -206,6 +211,11 @@ public class UIManager : MonoBehaviour
 
             leaderboardPanel.SetActive(true);
         }));
+    }
+
+    public void ShowSettings()
+    {
+        settingsPanel.SetActive(true);
     }
     
     public void UpdateHealthText(int n)
