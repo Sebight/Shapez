@@ -35,9 +35,8 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public WaveManager waveManager;
     public Leaderboard leaderboard;
-
     public InteractionManager interactionManager;
-
+    public Settings settings;
     //Getters
     public Transform GetPathWaypoints() => pathWaypoints;
 

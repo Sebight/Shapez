@@ -216,6 +216,7 @@ public class UIManager : MonoBehaviour
     public void ShowSettings()
     {
         settingsPanel.SetActive(true);
+        gameManager.settings.LoadSettings();
     }
     
     public void UpdateHealthText(int n)
