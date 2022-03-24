@@ -182,7 +182,8 @@ public class UIManager : MonoBehaviour
         leaderboardButton.gameObject.SetActive(true);
         quitButton.gameObject.SetActive(true);
         usernameText.gameObject.SetActive(true);
-
+        settingsButton.gameObject.SetActive(true);
+        
         towersOptions.SetActive(false);
         waveText.gameObject.SetActive(false);
         moneyText.gameObject.SetActive(false);
