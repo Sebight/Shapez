@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2062.1973, g: 2226.2578, b: 2613.2148, a: 1}
+  m_IndirectSpecularColor: {r: 2059.4395, g: 2223.252, b: 2609.873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8952,6 +8952,7 @@ MonoBehaviour:
   - {fileID: 2352173920424674004, guid: a6a03b5aeeb3d42c688c02a3379cd57d, type: 3}
   - {fileID: 2352173920424674004, guid: 912184abcf145d444b173ad800d75ef9, type: 3}
   - {fileID: 2352173920424674004, guid: 4d0a006fbdee74828837ac43031ea331, type: 3}
+  - {fileID: 2352173920424674004, guid: 73d35ba8c09d44547aad30bdcd73ff93, type: 3}
   towersPrefabs:
   - {fileID: 299741827}
   - {fileID: 5799692}
