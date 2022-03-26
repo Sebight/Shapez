@@ -26,7 +26,7 @@ public class Settings : MonoBehaviour
 
     public void onChange() => changedStuff = true;
 
-    //https://stackoverflow.com/questions/11/calculate-relative-time-in-c-sharp
+    //https://stackoverflow.com/a/12
     public string ConvertTimeToWords(DateTime theDate)
     {
         Dictionary<long, string> thresholds = new Dictionary<long, string>();
