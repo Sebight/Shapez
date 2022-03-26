@@ -216,5 +216,5 @@ MonoBehaviour:
   fireRate: 0.1
   damage: 100
   damageGiven: 0
-  cost: 1000
+  cost: 1200
   canSeeStealth: 1

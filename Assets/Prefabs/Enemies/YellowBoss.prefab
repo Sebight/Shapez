@@ -114,8 +114,8 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   pathWaypoints: {fileID: 0}
   baseHealth: 1000
-  health: 1229
+  health: 1000
   damage: 150
   speed: 4
   isStealth: 0
-  reward: 25
+  reward: 40

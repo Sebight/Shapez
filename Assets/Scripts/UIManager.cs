@@ -159,6 +159,8 @@ public class UIManager : MonoBehaviour
                     waveText.gameObject.SetActive(true);
                     towersOptions.SetActive(true);
                     moneyText.gameObject.SetActive(true);
+                    playerHealthText.gameObject.SetActive(true);
+                    speedUpButton.gameObject.SetActive(true);
                 }
             });
         }

@@ -117,7 +117,7 @@ MonoBehaviour:
   fireRate: 0.1
   damage: 50
   damageGiven: 0
-  cost: 500
+  cost: 750
   canSeeStealth: 1
 --- !u!120 &-8682881101949759138
 LineRenderer:

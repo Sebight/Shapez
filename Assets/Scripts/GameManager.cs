@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4);
         for (int i = 0; i < enemy.Count; i++)
         {
+            if (!waveRunning) break;
             yield return new WaitForSeconds(0.3f);
             SpawnEnemy(enemy[i]);
         }
@@ -154,6 +155,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ClearAllEnemies()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i].gameObject);
+        }
+
+        enemies.Clear();
+    }
+
     public void GameOver()
     {
         StartCoroutine(leaderboard.AddEntry(new LeaderboardEntry(PlayerPrefs.GetString("username"), waveManager.GetCurrentWave())));
@@ -172,12 +183,8 @@ public class GameManager : MonoBehaviour
         }
 
         towersPlaced.Clear();
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            Destroy(enemies[i].gameObject);
-        }
-
-        enemies.Clear();
+        
+        Invoke(nameof(ClearAllEnemies), 1f);
 
         foreach (var prefab in towersPrefabs)
         {
