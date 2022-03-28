@@ -85,7 +85,7 @@ public class InteractionManager : MonoBehaviour
 
     public void SelectTower(Ray ray)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !placingTower)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !placingTower && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
@@ -163,6 +163,11 @@ public class InteractionManager : MonoBehaviour
         {
             ResetPlacing();
             ResetSelect();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && selectedTower != null)
+        {   
+            SellTower();
         }
     }
 }
