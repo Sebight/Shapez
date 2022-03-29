@@ -63,11 +63,11 @@ public class Settings : MonoBehaviour
 
     public void SaveSettings()
     {
+        if (!changedStuff) return;
+
         SettingsSave save = new SettingsSave();
         save.volume = volumeSlider.value;
         save.lastEdited = System.DateTime.Now;
-
-        if (!changedStuff) return;
 
         string json = JsonConvert.SerializeObject(save);
         File.WriteAllText(Application.persistentDataPath + "/settings.txt", json);

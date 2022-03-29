@@ -4,13 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-// public enum EnemyType
-// {
-//     Normal,
-//     Stealth,
-//     Boss
-// }
-
 public class Enemy : MonoBehaviour
 {
     public GameManager gameManager;
@@ -23,7 +16,6 @@ public class Enemy : MonoBehaviour
     public int speed;
     public bool isStealth;
     public int reward;
-    // public EnemyType type;
 
 
     private int currentWaypoint = 0;
@@ -37,7 +29,6 @@ public class Enemy : MonoBehaviour
     public virtual void Initialize(GameManager gameManager)
     {
         this.gameManager = gameManager;
-        // health = baseHealth;
     }
 
     public void ResetUpgradedStats()
@@ -48,7 +39,9 @@ public class Enemy : MonoBehaviour
     public virtual void Navigate()
     {
         if (pathWaypoints == null) pathWaypoints = gameManager.GetPathWaypoints();
+
         transform.position = Vector3.MoveTowards(transform.position, pathWaypoints.GetChild(currentWaypoint).position, speed * Time.deltaTime);
+        
         if (Vector3.Distance(transform.position, pathWaypoints.GetChild(currentWaypoint).position) < 0.1f)
         {
             currentWaypoint++;
